@@ -40,24 +40,24 @@ if [ ! -z "$ionic_dir" ] ; then
 fi
 
 debug_echo "is_debug: $is_debug"
-debug_echo "cordova_dir: $ionic_dir"
-debug_echo "cordova command: $ionic_command"
+debug_echo "ionic_dir: $ionic_dir"
+debug_echo "ionic command: $ionic_command"
 debug_echo "platform_name: $platform_name"
 debug_echo "build_options: $build_options"
 
 if [[ "$ionic_command" == *"add" ]]
 then
-    if [ ! -z "$(cordova platform ls | awk '/platforms:$/,/^Available/ { print }' | grep "$platform_name")" ]; then
+    if [ ! -z "$(ionic platform ls | awk '/platforms:$/,/^Available/ { print }' | grep "$platform_name")" ]; then
         echo "===> $platform_name is aready installed"
         exit 0
     fi
 
-    cordova platform add $platform_name $build_options
+    ionic platform add $platform_name $build_options
 fi
 
 if [ "$ionic_command" == "build" ] ; then
-    echo "===> Running 'cordova $ionic_command $platform_name $build_options'"
-    cordova $ionic_command $platform_name $build_options
+    echo "===> Running 'ionic $ionic_command $platform_name $build_options'"
+    ionic $ionic_command $platform_name $build_options
 fi
 
 
